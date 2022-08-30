@@ -49,7 +49,7 @@
       <xpath expr="//field[@name='partner_id']" position="attributes">
         <attribute name="string">Recoleccion</attribute>
       </xpath>
-      <xpath expr="//field[@name='partner_id']" position="before">
+      <xpath expr="//field[@name='partner_id']" position="after">
         <field name="cliente" />
       </xpath>
       
