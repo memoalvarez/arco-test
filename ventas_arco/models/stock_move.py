@@ -9,6 +9,7 @@ class StockMove(models.Model):
    _inherit = 'stock.move'
 
    sale_line_id = fields.Many2one('sale.order.line', string="Linea de pedido de venta")
+   project_task_id = fields.Many2one('project.task', string="Tarea")
    peso = fields.Float(string="Peso (Kg)")
    sOrganizacion = fields.Float('S Organización', compute="_compute_valor_envio")
    valorDeclarado = fields.Float('Valor declarado', compute="_compute_valor_envio")

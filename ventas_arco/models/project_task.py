@@ -55,12 +55,13 @@ class ProjectTask(models.Model):
       linea = {
          'picking_id' : recepcion.id,
          'product_id' : producto.id,
-         'name' : self.sale_line_id.name,
+         'name' : self.description,
          'location_id': self.almacen.in_type_id.default_location_src_id.id,
          'location_dest_id': self.almacen.in_type_id.default_location_dest_id.id,
-         'description_picking' : self.sale_line_id.name,
+         'description_picking' : self.description,
          'product_uom_qty' : self.sale_line_id.numeroDeBultos,
-         'product_uom' : self.sale_line_id.product_uom.id
+         'product_uom' : self.sale_line_id.product_uom.id,
+         'project_task_id' : self.id
       }
       movimiento = self.env['stock.move'].create(linea)
 
@@ -81,8 +82,8 @@ class ProjectTask(models.Model):
          'picking_id' : self.guia_id.id,
          'product_id' : producto.id,
          'name' : self.guia_id.name,
-         'location_id': self.almacen.in_type_id.default_location_src_id.id,
-         'location_dest_id': self.almacen.in_type_id.default_location_dest_id.id,
+         'location_id': self.guia_id.location_id.id,
+         'location_dest_id': self.guia_id.location_dest_id.id,
          'description_picking' : ec_descripcion,
          'product_uom_qty' : bultos,
          'product_uom' : producto.uom_id.id,

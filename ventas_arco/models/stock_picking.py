@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+import re
 
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
@@ -14,6 +15,7 @@ class StockPicking(models.Model):
     totalMonto = fields.Float(string="Montos", compute="_compute_valor_permisionario")
     receivedBy = fields.Many2one('res.partner', string="Recibido por")
     tipodeoperacion2 = fields.Selection(related="picking_type_id.code", string="Tipo de operacion")
+    
     sequence_code2 = fields.Char(related="picking_type_id.sequence_code", string="Código")
 
     @api.depends('move_ids_without_package')
@@ -41,3 +43,4 @@ class StockPicking(models.Model):
             "context": {"create": False},
         }
         
+ 
