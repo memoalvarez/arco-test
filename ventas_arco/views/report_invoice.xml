@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="ventas_arco.report_invoice_document" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@class='page']" position="after">
+            <div class="pagare_info">
+                <p style="font-size: small;">
+                    PAGARE EN ESTA CIUDAD DE TONALÁ JALISCO, CON FECHA <b><span t-field="o.name"/></b> RECONOZCO DEBER Y PAGARE INCONDICIONALMENTE A LA ORDEN DE   <b>   ARCO BAJA SUR S DE RL DE CV   </b> 
+                    LA CANTIDAD DE <b><span t-esc="o._l10n_mx_edi_cfdi_amount_to_text()"/></b> VALOR RECIBIDO A NUESTRA ENTERA SATISFACCION, EN ESTA MISMA CIUDAD, O EN CUALQUIER OTRA QUE SE REQUIERA, 
+                    Y ACEPTO PAGAR UN INTERÉS MENSUAL A RAZÓN DEL 5% MENSUAL SOBRE SALDOS INSOLUTOS POR TODO EL TIEMPO QUE DURE EL ADEUDO Y HASTA SU TOTAL LIQUIDACIÓN, A PARTIR DEL DIA 
+                    SIGUIENTE DEL VENCIMIENTO DE FECHA <br />
+                    RECIBI MERCANCIA  DE CONFORMIDAD:
+                </p>
+                <ul style="list-style-type: none; font-size: small; float: left; padding-right: 120px;">
+                    <li><b>Nombre:</b>  <span t-field="o.partner_id.name"/></li>
+                    <li><b>Firma</b> </li>
+                </ul>
+                <ul style="list-style-type: none; font-size: small; float: center;">
+                    <li><b>Fecha:</b>  <span t-field="o.invoice_date"/></li>
+                    <li><b>Hora: </b></li>
+                </ul>
+            </div>
+        </xpath>
+    </template>
+</odoo>

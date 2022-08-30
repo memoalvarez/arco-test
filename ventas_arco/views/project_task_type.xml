@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="project_task_type_inherit_ventas_arco" model="ir.ui.view">
+    <field name="name">project.task.type.inherit.ventas.arco</field>
+    <field name="model">project.task.type</field>
+    <field name="inherit_id" ref="project.task_type_edit"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='sequence']" position="after">
+          <field name="project_task_function"/>
+      </xpath>
+
+
+    </field>
+  </record>
+</odoo>

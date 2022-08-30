@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="sale_report_inherit" inherit_id="sale.report_saleorder_document">
+
+    <xpath expr="/t/t/div/h2/t[1]/span[1]" position="replace">
+        <span t-if="doc.state not in ['draft','sent']">Orden de venta:</span>
+    </xpath>
+
+    <xpath expr="/t/t/div/h2/t[1]/span[2]" position="replace">
+        <span t-if="doc.state in ['draft','sent']">Cotización:</span>
+    </xpath>
+
+</template>
+
+</odoo>

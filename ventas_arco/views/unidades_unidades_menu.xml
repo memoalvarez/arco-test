@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="get_unidades_unidades_view" model="ir.actions.act_window">
+        <field name="name">Unidades Arco</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">unidades.unidades</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea un nuevo registro
+            </p>
+        </field>
+    </record>
+
+    <record id="ventas_arco_unidades_unidades_menu" model="ir.ui.menu">
+        <field name="action" ref="ventas_arco.get_unidades_unidades_view"/>
+        <field name="active" eval="True"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="name">Unidades Arco</field>
+        <field name="parent_id" ref="contacts.res_partner_menu_config"/>
+        <field name="sequence">10</field>
+        <field name="web_icon" eval="False"/>
+    </record>
+</odoo>

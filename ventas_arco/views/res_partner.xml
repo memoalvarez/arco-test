@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="res_partner_inherit_ventas_arco" model="ir.ui.view">
+    <field name="name">res.partner.inherit.ventas.arco</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//group[@name='purchase']" position="after">
+          <group name="poliza" string="Póliza">
+              <field name="aseguradora"/>
+              <field name="noDePoliza"/>
+          </group>
+      </xpath>
+
+      <xpath expr="//group[@name='accounting_entries']" position="before">
+          <group name="facturacion" string="Facturación">
+              <field name="l10n_mx_edi_payment_method_id"/>
+              <field name="l10n_mx_edi_usage"/>
+          </group>
+      </xpath>
+
+
+      <xpath expr="//field[@name='property_product_pricelist']" position="after">
+        <field name="permisionario_id" domain="[('category_id','ilike','PERMISIONARIO')]"/>
+      </xpath>
+
+    </field>
+  </record>
+</odoo>

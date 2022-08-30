@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="project_task_inherit_ventas_arco" model="ir.ui.view">
+    <field name="name">project.task.inherit.ventas.arco</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_form2"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='parent_id']" position="after">
+        <field name="almacen"/>
+        <field name="reception_ids" invisible="1"/>
+        <field name="guia_id" invisible="1"/>
+      </xpath>
+
+      <xpath expr="//field[@name='stage_id']" position="before">
+        <button name="action_create_reception" attrs="{'invisible': ['|',('project_task_function', '!=', 'recepcion_nc'),('reception_count', '>', 0)]}" string="Crear recepción" type="object" class="oe_highlight"/>
+      </xpath>
+
+
+      <xpath expr="//field[@name='almacen']" position="after">
+          <field name="project_task_function" invisible="1"/>
+      </xpath>
+
+      <xpath expr="//button[@name='action_open_parent_task']" position="after">
+        <button type="object" name="action_view_guias" attrs="{'invisible': [('guia_id', '=', False)]}" class="oe_stat_button" icon="fa-thumb-tack" string="Informe"/>
+      </xpath>
+
+      <xpath expr="//field[@name='stage_id']" position="before">
+        <button name="action_create_reception_2" attrs="{'invisible': [('project_task_function', '!=', 'recepcion_c')]}" string="Crear recepción" type="object" class="oe_highlight"/>
+      </xpath>
+
+      <xpath expr="//field[@name='almacen']" position="after">
+        <field name="chofer" domain="[('category_id','ilike','OPERADOR')]"/>
+        <field name="unidad" domain="[('operador','=', chofer)]"/>
+      </xpath>
+
+      <xpath expr="//button[@name='action_open_parent_task']" position="before">
+          <button type="object" name="action_view_receptions_2" class="oe_stat_button" icon="fa-truck" attrs="{'invisible': [('reception_count', '=', 0)]}">
+            <field string="Recepciones" name="reception_count" widget="statinfo"/>
+            <field name="sale_order_id" invisible="1"/>
+          </button>
+      </xpath>
+
+      <xpath expr="//field[@name='stage_id']" position="before">
+        <button name="action_create_cotizacion" attrs="{'invisible': ['|',('project_task_function', '!=', 'envio_c'),('sale_order_id', '!=', False)]}" string="Crear pedido" type="object" class="oe_highlight"/>
+      </xpath>
+
+      
+
+    </field>
+  </record>
+</odoo>

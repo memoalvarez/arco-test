@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="stock_picking_inherit_ventas_arco" model="ir.ui.view">
+    <field name="name">stock.picking.inherit.ventas.arco</field>
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.view_picking_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//button[@name='action_picking_move_tree']" position="after">
+        <button type="object" name="action_view_task" attrs="{'invisible': [('project_task_id', '=', False)]}" class="oe_stat_button" icon="fa-tasks" string="Tarea"/>
+        <field name="project_task_id" invisible="1"/>
+      </xpath>
+
+      <xpath expr="//group[@name='other_infos']" position="after">
+        <group string="Unidad" name="unidad_info">
+          <field name="permisionario" domain="[('category_id','ilike','PERMISIONARIO')]"/>
+          <field name="chofer" domain="[('category_id','ilike','OPERADOR'), ('permisionario_id','=', permisionario)]"/>
+          <field name="unidad"  domain="[('operador','=', chofer)]"/>
+          <field name="ruta"/>
+        </group>
+      </xpath>
+
+      <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='operations']/field[@name='move_ids_without_package']/tree[1]/field[@name='product_id']" position="after">
+        <field name="sale_line_id" invisible="1"/>
+        <field optional="hide" name="sOrganizacion"/>
+      </xpath>
+
+      <xpath expr="//field[@name='user_id']" position="after">
+        <field name="tipodeoperacion2" invisible="1"/>
+        <field name="receivedBy" domain="[('category_id','ilike','EMPLEADO')]" attrs="{'invisible': [('tipodeoperacion2', '!=', 'incoming')]}"/>
+      </xpath>
+
+      <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='operations']/field[@name='move_ids_without_package']/tree[1]/field[@name='product_uom']" position="after">
+        <field optional="show" name="peso"/>
+        
+      </xpath>
+
+      <xpath expr="//button[@name='button_validate']" position="attributes">
+          <attribute name="groups">base.group_system</attribute>
+      </xpath>
+       
+
+    </field>
+  </record>
+
+  <record id="stock_picking_tree_ventas_arco" model="ir.ui.view">
+      <field name="name">stock.picking.tree.ventas.arco</field> 
+      <field name="model">stock.picking</field>
+      <field name="arch" type="xml">
+          <tree>
+              <field name="name"/>
+              <field name="create_date"/>
+              <field name="chofer"/>
+              <field name="unidad"/>
+              <field name="sOrganizacion"/>
+              <field name="totalMonto"/>
+          </tree>
+      </field> 
+  </record>
+</odoo>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="informe_viaje">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+
+                        <div class="page">
+                            <h2>Informe de viaje</h2>
+                        </div>
+                        <br />
+                        <div class="page">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha y hora</th>
+                                        <th>Unidad</th>
+                                        <th>Placas</th>
+                                        <th>Chofer</th>
+                                        <th>Ruta</th>
+                                        <th>Permisionario</th>
+                                        <th>Folio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><p><span t-field="o.scheduled_date"/></p></td>
+                                        <td><p><span t-field="o.unidad.name"/></p></td>
+                                        <td><p><span t-field="o.unidad.placas"/></p></td>
+                                        <td><p><span t-field="o.chofer.name"/></p></td>
+                                        <td><p><span t-field="o.ruta"/></p></td>
+                                        <td><p><span t-field="o.permisionario.name"/></p></td>
+                                        <td><p><span t-field="o.name"/></p></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+
+                            <table class="table" style="width: auto;">
+                                <thead>
+                                    <tr> 
+                                        <th>Factura</th>
+                                        <th>Condiciones de pago</th>
+                                        <th>Remitente</th>
+                                        <th>Destinatario</th>
+                                        <th>Destino</th>
+                                        <th>N° de bultos</th>
+                                        <th>Servicio organizacion</th>
+                                        <th>Valor Declarado</th>
+                                        <th>Seguro</th>
+                                        <th>Maniobras</th>
+                                        <th>Entrega a domicilio</th>
+                                        <th>Recoleccion</th>
+                                        <th>IVA</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="factPagadas" t-value="0"/>
+                                    <t t-foreach="o.move_ids_without_package" t-as="line">
+                                        <tr>
+                                            <td><p><span t-field="line.sale_line_id.order_id.invoice_ids.name"/></p></td>
+                                            <td><p><span t-field="line.sale_line_id.order_id.invoice_ids.paymentTerm"/></p></td>
+                                            <td><p><span t-field="line.sale_line_id.order_id.partner_invoice_id"/></p></td>
+                                            <td><p><span t-field="line.sale_line_id.order_id.partner_shipping_id.name"/></p></td>
+                                            <td><p><span t-field="o.ruta"/></p></td>
+                                            <td><p><span t-field="line.product_uom_qty"/></p></td>
+                                            <td><p>$<span t-field="line.sOrganizacion"/></p></td>
+                                            <td><p>$<span t-field="line.valorDeclarado"/></p></td>
+                                            <td><p>$<span t-field="line.seguro"/></p></td>
+                                            <td><p>$<span t-field="line.maniobras"/></p></td>
+                                            <td><p>$<span t-field="line.entregaDomicilio"/></p></td>
+                                            <td><p>$<span t-field="line.recoleccion"/></p></td>
+                                            <td><p>$<span t-field="line.iva"/></p></td>
+                                            <td><p>$<span t-field="line.total"/></p></td>
+                                        </tr>
+                                        
+                                    </t>
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                                <strong>Totales</strong>
+                                            </td>
+                                            <td>
+                                                <p>$<span t-field="line.valortotalSorganizacion"/></p>
+                                            </td>
+                                            <td>
+                                                <p>$<span t-field="line.valorTotalDeclarado"/></p>
+                                            </td>
+                                            <td>
+                                                <p>$<span t-field="line.valorTotalSeguro"/></p>
+                                            </td>
+                                            <td>
+                                                <p>$<span t-field="line.valorTotalManiobras"/></p>
+                                            </td>
+                                            <td>
+                                                <p>$<span t-field="line.valorTotalEntrega"/></p>
+                                            </td>
+                                            <td>
+                                                <p>$<span t-field="line.valorTotalRecoleccion"/></p>
+                                            </td>
+                                            <td>
+                                                <p>$<span t-field="line.ivaTotal"/></p>
+                                            </td>
+                                            <td>
+                                                <p>$<span t-field="line.totalFinal"/></p>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                            <table style="width: 20%; text-aling: left;">
+                                <tr>
+                                    <th>
+                                        Facturas totales
+                                    </th>
+                                    <td>
+                                        <p><span t-field="line.facturaTotal"/></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Fletes pagados
+                                    </th>
+                                    <td>
+                                        <p><span t-field="line.fletesFp"/></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Fletes por cobrar
+                                    </th>
+                                    <td>
+                                        <p><span t-field="line.fletesFc"/></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Fletes cobro al regreso
+                                    </th>
+                                    <td>
+                                        <p><span t-field="line.fletesFcr"/></p>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                            <table style="width: 20%; text-aling: left;">
+                                <tr>
+                                    <th>
+                                        Comisión
+                                    </th>
+                                    <td>
+                                        <p>$<span t-field="line.comision"/></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Seguro
+                                    </th>
+                                    <td>
+                                        <p>$<span t-field="line.valorTotalSeguro"/></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Subtotal
+                                    </th>
+                                    <td>
+                                        <p>$<span t-field="line.subtotal"/></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        IVA
+                                    </th>
+                                    <td>
+                                        <p>$<span t-field="line.ivaPerm"/></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Total
+                                    </th>
+                                    <td>
+                                        <p>$<span t-field="line.totalperm"/></p>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+        <report id="informe_viajes" 
+            string="Informe de viaje"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            name="ventas_arco.informe_viaje"
+        />
+    </data>
+</odoo>
