@@ -46,7 +46,7 @@ class StockPicking(models.Model):
 
         
     def write(self, vals):
-        if vals.gets('partner_id'):
+        if vals.get('partner_id'):
             for line in self.move_ids_without_package:
                 line.update({
                     'description_picking': self.project_task_id.description
