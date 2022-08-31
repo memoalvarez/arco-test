@@ -29,6 +29,7 @@
         'views/informe_viaje.xml',
         'views/project_task_type.xml',
         'views/project_task.xml',
+        'views/report_delivery_document.xml',
         'views/sale_order.xml',
         'views/sale_report_inherit.xml',
         'views/stock_picking.xml',
