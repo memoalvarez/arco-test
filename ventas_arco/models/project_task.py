@@ -15,7 +15,7 @@ class ProjectTask(models.Model):
    guia_id = fields.Many2one('stock.picking', string="Informe")
    chofer = fields.Many2one('res.partner', string="Operador")
    unidad = fields.Many2one('unidades.unidades', string="Unidad")
-   cliente = fields.Many2one('res.partner', string='Cliente')
+   recoleccion = fields.Many2one('res.partner', string='Recolección')
 
 
    project_task_function = fields.Selection([
