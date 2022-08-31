@@ -47,7 +47,7 @@
       </xpath>
 
       <xpath expr="//field[@name='partner_id']" position="after">
-        <field name="recoleccion" />
+        <field name="recoleccion2" />
       </xpath>
       
 

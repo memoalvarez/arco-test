@@ -15,7 +15,7 @@ class ProjectTask(models.Model):
    guia_id = fields.Many2one('stock.picking', string="Informe")
    chofer = fields.Many2one('res.partner', string="Operador")
    unidad = fields.Many2one('unidades.unidades', string="Unidad")
-   recoleccion = fields.Many2one('res.partner', string='Recolección')
+   recoleccion2 = fields.Many2one('res.partner', string='Recolección')
 
 
    project_task_function = fields.Selection([
@@ -50,7 +50,7 @@ class ProjectTask(models.Model):
          'location_dest_id' : self.almacen.in_type_id.default_location_dest_id.id,
          'location_id' : self.almacen.in_type_id.default_location_src_id.id,
          'project_task_id' : self.id,
-         'recoleccion' : self.destinatario.id
+         'destinatario' : self.recoleccion2.id
       }
       recepcion = self.env['stock.picking'].create(vals)
 
