@@ -17,6 +17,7 @@ class StockPicking(models.Model):
     tipodeoperacion2 = fields.Selection(related="picking_type_id.code", string="Tipo de operacion")
     
     sequence_code2 = fields.Char(related="picking_type_id.sequence_code", string="Código")
+    destinatario = fields.Many2one('res.partner', string="Destinatario")
 
     @api.depends('move_ids_without_package')
     def _compute_valor_permisionario(self):

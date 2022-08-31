@@ -49,7 +49,8 @@ class ProjectTask(models.Model):
          'picking_type_id' : self.almacen.in_type_id.id,
          'location_dest_id' : self.almacen.in_type_id.default_location_dest_id.id,
          'location_id' : self.almacen.in_type_id.default_location_src_id.id,
-         'project_task_id' : self.id 
+         'project_task_id' : self.id,
+         'recoleccion' : self.destinatario.id
       }
       recepcion = self.env['stock.picking'].create(vals)
 
