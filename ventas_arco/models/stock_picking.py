@@ -46,7 +46,7 @@ class StockPicking(models.Model):
         
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
-        for line in self.move_ids_without_packages:
+        for line in self.move_ids_without_package:
             line.update({
                 'description_picking': self.project_task_id.description
             })
