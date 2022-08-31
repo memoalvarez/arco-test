@@ -47,7 +47,8 @@ class StockPicking(models.Model):
         
     def write(self, vals):
         if vals.get('partner_id'):
+            to_clean = re.compile('<.*?>')
             for line in self.move_ids_without_package:
                 line.update({
-                    'description_picking': self.project_task_id.description
+                    'description_picking': re.sub(to_clean, ' ', self.project_task_id.description)
                 })
