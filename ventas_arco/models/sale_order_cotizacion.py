@@ -60,7 +60,7 @@ class SaleOrderCotizacion(models.TransientModel):
          "type": "ir.actions.act_window",
          "res_model": "sale.order",
          "views": [[False, "form"]],
-         "res_id": self.cotizacion_id.id,
+         "res_id": sale_order.id,
          "context": {"create": False},
       }
 
