@@ -39,9 +39,7 @@
         
       </xpath>
 
-      <xpath expr="//button[@name='button_validate']" position="attributes">
-          <attribute name="groups">__export__.res_groups_73_3898080f</attribute>
-      </xpath>
+      
        
 
     </field>
