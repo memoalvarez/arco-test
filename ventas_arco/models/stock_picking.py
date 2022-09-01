@@ -43,3 +43,10 @@ class StockPicking(models.Model):
             "res_id": self.project_task_id.id,
             "context": {"create": False},
         }
+        
+    @api.onchange('partner_id')
+    def _onchange_partner_id(self):
+        for line in self.move_ids_without_package:
+            to_clean = re.compile('<.*?>')
+            if line.descripcion2:
+                line.description_picking = re.sub(to_clean, ' ', line.descripcion2)
