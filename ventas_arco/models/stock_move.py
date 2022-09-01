@@ -10,6 +10,7 @@ class StockMove(models.Model):
 
    sale_line_id = fields.Many2one('sale.order.line', string="Linea de pedido de venta")
    project_task_id = fields.Many2one('project.task', string="Tarea")
+   descripcion2 = fields.Char('Descripcion')
    peso = fields.Float(string="Peso (Kg)")
    sOrganizacion = fields.Float('S Organización', compute="_compute_valor_envio")
    valorDeclarado = fields.Float('Valor declarado', compute="_compute_valor_envio")
@@ -167,3 +168,8 @@ class StockMove(models.Model):
                 'ivaInfoSeguro': totalIvaSeguro,
                 'totalInfoSeguro': totalFinalseguro,
             })
+         
+   @api.onchange('description_picking')
+   def _onchange_description_picking(self):
+      if self.descripcion2:
+         self.description_picking = self.descripcion2
