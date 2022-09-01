@@ -39,6 +39,7 @@
         'views/res_partner.xml',
         'views/account_move.xml',
         'views/stock_picking_report.xml',
+        'views/sale_order_cotizacion.xml',
         'views/report_invoice.xml',
     ],
 }
