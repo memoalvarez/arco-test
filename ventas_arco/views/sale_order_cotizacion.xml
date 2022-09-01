@@ -7,14 +7,11 @@
             <field name="arch" type="xml">
                 <form string="Orden de venta">
                     <group>
-                      <field name="cotizacion_id"/>
+                      <p>Se creara una cotizacion con todas las tareas seleccionadas</p>
                     </group>
 
                     <footer>
-                        <button string="Agregar a orden de venta"
-                            attrs="{'invisible': [('cotizacion_id', '=', False)]}" data-hotkey="q"
-                            name="add_to_report_button" type="object" class="btn-primary"/>
-                        <button string="Crear nueva orden de venta"
+                        <button string="Crear orden de venta"
                             attrs="{'invisible': [('cotizacion_id', '!=', False)]}"
                             name="create_report_button" type="object" class="btn-primary"/>
                         <button string="Cancel" class="btn-secondary" special="cancel"/>
