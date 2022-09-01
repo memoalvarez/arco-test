@@ -169,7 +169,3 @@ class StockMove(models.Model):
                 'totalInfoSeguro': totalFinalseguro,
             })
          
-   @api.onchange('description_picking')
-   def _onchange_description_picking(self):
-      if self.descripcion2:
-         self.description_picking = self.descripcion2
