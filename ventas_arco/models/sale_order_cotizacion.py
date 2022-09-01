@@ -19,7 +19,7 @@ class SaleOrderCotizacion(models.TransientModel):
 
       #Se crea diccionario para caratula de cotizacion
       vals = {
-         'partner_id' : tareas[0].id,
+         'partner_id' : tareas[0].cliente.id,
          'sale_order_template_id': plantilla.id
       }
       sale_order = self.env['sale.order'].create(vals)
