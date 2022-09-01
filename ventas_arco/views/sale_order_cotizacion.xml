@@ -12,7 +12,6 @@
 
                     <footer>
                         <button string="Crear orden de venta"
-                            attrs="{'invisible': [('cotizacion_id', '!=', False)]}"
                             name="create_report_button" type="object" class="btn-primary"/>
                         <button string="Cancel" class="btn-secondary" special="cancel"/>
                     </footer>
