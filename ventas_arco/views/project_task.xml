@@ -46,8 +46,12 @@
         <button name="action_create_cotizacion" attrs="{'invisible': ['|',('project_task_function', '!=', 'envio_c'),('sale_order_id', '!=', False)]}" string="Crear pedido" type="object" class="oe_highlight"/>
       </xpath>
 
-      <xpath expr="//field[@name='partner_id']" position="after">
-        <field name="recoleccion" />
+      <xpath expr="//field[@name='partner_id']" position="before">
+        <field name="cliente" />
+      </xpath>
+
+      <xpath expr="//field[@name='partner_id']" position="attributes">
+        <attribute name="string">Recolección</attribute>
       </xpath>
       
 
