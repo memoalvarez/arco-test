@@ -46,9 +46,8 @@ class StockPicking(models.Model):
         
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
-        to_clean = re.compile('<.*?>')
         for line in self.move_ids_without_package:
             if line.descripcion2:
                 line.update({
-                    'description_picking':  re.sub(to_clean, ' ', line.descripcion2)
+                    'description_picking': line.descripcion2
                 })
