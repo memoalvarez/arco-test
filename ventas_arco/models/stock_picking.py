@@ -50,5 +50,5 @@ class StockPicking(models.Model):
         for line in self.move_ids_without_package:
             if line.descripcion2:
                 line.update({
-                    'description_picking':  re.sub(to_clean, ' ', self.descripcion2)
+                    'description_picking':  re.sub(to_clean, ' ', line.descripcion2)
                 })
