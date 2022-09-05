@@ -11,6 +11,10 @@
         <field optional="show" name="numeroDeBultos"/>
         <field optional="show" name="valorDeclarado"/>
       </xpath>
+
+      <xpath expr="//field[@name='tag_ids']" position="attributes">
+        <attribute name="string">Rutas</attribute>
+      </xpath>
        
 
     </field>
