@@ -8,7 +8,7 @@ class StockPicking(models.Model):
 
     project_task_id = fields.Many2one('project.task')
     chofer = fields.Many2one('res.partner', string="Operador")
-    ruta = fields.Char(string="Ruta")
+    ruta = fields.Many2many('crm.tag' ,string="Rutas")
     permisionario = fields.Many2one('res.partner', string="Permisionario")
     unidad = fields.Many2one('unidades.unidades', string="Unidad")
     sOrganizacion = fields.Float(string="S Organización", compute="_compute_valor_permisionario")
