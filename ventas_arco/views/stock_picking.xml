@@ -17,7 +17,7 @@
           <field name="permisionario" domain="[('category_id','ilike','PERMISIONARIO')]"/>
           <field name="chofer" domain="[('category_id','ilike','OPERADOR'), ('permisionario_id','=', permisionario)]"/>
           <field name="unidad"  domain="[('operador','=', chofer)]"/>
-          <field name="ruta"/>
+          <field name="ruta" widget="many2many_tags"/>
         </group>
       </xpath>
 
