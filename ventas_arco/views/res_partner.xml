@@ -26,6 +26,14 @@
         <field name="permisionario_id" domain="[('category_id','ilike','PERMISIONARIO')]"/>
       </xpath>
 
+      <xpath expr="//field[@name='street_number']" position="attributes">
+        <attribute name="string">Exterior</attribute>
+      </xpath>
+
+      <xpath expr="//field[@name='street_number2']" position="attributes">
+        <attribute name="string">Interior</attribute>
+      </xpath>
+
     </field>
   </record>
 </odoo>
