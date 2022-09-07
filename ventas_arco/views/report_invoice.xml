@@ -22,7 +22,6 @@
         </xpath>
         <xpath expr="//div[@name='invoice_date']" position="after">
             <div name="ruta">
-                <p>Condiciones de pago: </p>
                 <p><span t-field="o.paymentTerm" /></p>
             </div>
         </xpath>
