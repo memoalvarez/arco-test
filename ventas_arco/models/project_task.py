@@ -62,8 +62,8 @@ class ProjectTask(models.Model):
          'name' : self.description,
          'location_id': self.almacen.in_type_id.default_location_src_id.id,
          'location_dest_id': self.almacen.in_type_id.default_location_dest_id.id,
-         'description_picking' : re.sub(to_clean, ' ', self.descripcion),
-         'descripcion2' : re.sub(to_clean, ' ', self.descripcion),
+         'description_picking' : re.sub(to_clean, ' ', self.description),
+         'descripcion2' : re.sub(to_clean, ' ', self.description),
          'product_uom_qty' : self.sale_line_id.numeroDeBultos,
          'product_uom' : self.sale_line_id.product_uom.id,
          'project_task_id' : self.id
