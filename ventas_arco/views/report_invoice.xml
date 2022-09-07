@@ -22,7 +22,7 @@
         </xpath>
         <xpath expr="//div[@name='invoice_date']" position="after">
             <div name="ruta">
-                <p><span t-field="o.ruta" /></p>
+                <p><span t-field="o.stock_move_id.picking_id.ruta" /></p>
             </div>
         </xpath>
     </template>
