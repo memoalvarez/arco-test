@@ -51,3 +51,7 @@ class StockPicking(models.Model):
                 line.update({
                     'description_picking': line.descripcion2
                 })
+            else:
+                line.update({
+                    'description_picking': line.descripcion2
+                })
