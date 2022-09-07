@@ -9,7 +9,7 @@ class AccountMove(models.Model):
    noDePoliza = fields.Char(string="N° de póliza", related='partner_id.noDePoliza')
    
    paymentTerm = fields.Selection([('FP', 'Fletes pagados'), ('FC', 'Fletes por cobrar'), ('FR','Fletes C. Reg.')], string='Condiciones de pago')
-   ruta = fields.Char(string="Ruta")
+   
    
    @api.model
    def create(self, vals):
