@@ -49,4 +49,4 @@ class StockPicking(models.Model):
         for line in self.move_ids_without_package:
             line.description_picking = line.descripcion2
             if not line.descripcion2:
-                line.description_picking = 'Producto'
+                line.description_picking = 'Producto test'
