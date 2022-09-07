@@ -17,7 +17,6 @@
 
         <xpath expr="//field[@name='payment_reference']" position="after">
             <field name="paymentTerm"/>
-            <field name="ruta" invisible="0"/>
         </xpath>
 
     </field>
