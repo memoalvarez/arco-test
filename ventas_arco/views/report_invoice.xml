@@ -20,5 +20,10 @@
                 </ul>
             </div>
         </xpath>
+        <xpath expr="//div[@name='invoice_date']" position="after">
+            <div name="ruta">
+                <p><span t-field="o.ruta" /></p>
+            </div>
+        </xpath>
     </template>
 </odoo>

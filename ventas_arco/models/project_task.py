@@ -4,6 +4,7 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 from odoo import _
 import logging
+import re
 
 _logger = logging.getLogger(__name__)
 
@@ -40,6 +41,7 @@ class ProjectTask(models.Model):
 
 
    def action_create_reception(self):
+      to_clean = re.compile('<.*?>')
       if not self.almacen:
         raise ValidationError(_('Necesita seleccionar un almacén antes de crear recepción'))
 
@@ -60,8 +62,8 @@ class ProjectTask(models.Model):
          'name' : self.description,
          'location_id': self.almacen.in_type_id.default_location_src_id.id,
          'location_dest_id': self.almacen.in_type_id.default_location_dest_id.id,
-         'description_picking' : self.description,
-         'descripcion2' : self.description,
+         'description_picking' : re.sub(to_clean, ' ', self.description),
+         'descripcion2' : re.sub(to_clean, ' ', self.description),
          'product_uom_qty' : self.sale_line_id.numeroDeBultos,
          'product_uom' : self.sale_line_id.product_uom.id,
          'project_task_id' : self.id
@@ -150,23 +152,34 @@ class ProjectTask(models.Model):
    
    #Creacion de cotizacion desde tarea
    def action_create_cotizacion(self):
-      plantilla = self.sudo().env['sale.order.template'].search([('name', '=', 'Envío')])
       producto = self.sudo().env['product.product'].search([('default_code', '=', 'EC')])
+      plantilla = self.sudo().env['sale.order.template'].search([('name', '=', 'Envío')])
+
       bultos = 0
       ec_descripcion = ''
+
       for record in self.reception_ids:
          if record.state == 'done':
             for line in record.move_ids_without_package:
                bultos += line.quantity_done
                ec_descripcion = ec_descripcion + str(line.description_picking) + "\n"
 
+      #Se crea diccionario para caratula de cotizacion
+      vals = {
+         'partner_id' : self.partner_id.id,
+         'sale_order_template_id': plantilla.id
+      }
+
+      #Se crea corizacion y se agrega id a tarea
+      sale_order = self.env['sale.order'].create(vals)
+      self.sale_order_id = sale_order.id
 
       seq = 10
       #Esto sirve para agregar las lineas de la plantilla a la orden
       for line in plantilla.sale_order_template_line_ids:
          vals = {
             'sequence' : seq,
-            'order_id' : self.sale_order_id.id,
+            'order_id' : sale_order.id,
             'display_type': line.display_type,
             'name' : line.name
          }
@@ -174,7 +187,7 @@ class ProjectTask(models.Model):
          seq += 10
 
       vals = {
-            'order_id' : self.sale_order_id.id,
+            'order_id' : sale_order.id,
             'sequence' : 15,
             'product_id' : producto.id,
             'name': ec_descripcion,
