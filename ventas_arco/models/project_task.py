@@ -4,6 +4,7 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 from odoo import _
 import logging
+import re
 
 _logger = logging.getLogger(__name__)
 
@@ -40,6 +41,7 @@ class ProjectTask(models.Model):
 
 
    def action_create_reception(self):
+      to_clean = re.compile('<.*?>')
       if not self.almacen:
         raise ValidationError(_('Necesita seleccionar un almacén antes de crear recepción'))
 
@@ -60,8 +62,8 @@ class ProjectTask(models.Model):
          'name' : self.description,
          'location_id': self.almacen.in_type_id.default_location_src_id.id,
          'location_dest_id': self.almacen.in_type_id.default_location_dest_id.id,
-         'description_picking' : self.description,
-         'descripcion2' : self.description,
+         'description_picking' : re.sub(to_clean, ' ', self.descripcion),
+         'descripcion2' : re.sub(to_clean, ' ', self.descripcion),
          'product_uom_qty' : self.sale_line_id.numeroDeBultos,
          'product_uom' : self.sale_line_id.product_uom.id,
          'project_task_id' : self.id

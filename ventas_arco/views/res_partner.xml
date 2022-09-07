@@ -30,6 +30,7 @@
 
     </field>
   </record>
+  
   <record id="res_partner_inherit_ventas_arco2" model="ir.ui.view">
     <field name="name">res.partner.inherit.ventas.arco2</field>
     <field name="model">res.partner</field>
