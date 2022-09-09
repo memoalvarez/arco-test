@@ -20,7 +20,7 @@
                 </ul>
             </div>
         </xpath>
-        <xpath expr="//div[@name='invoice_date']" position="after">
+        <xpath expr="//div[@name='invoice_date']" position="after"> 
             <div class="col-auto col-3 mw-100 mb-2" t-if="o.paymentTerm" name="payment_term">
                 <strong>Condiciones de pago:</strong>
                 <p class="m-0" t-field="o.paymentTerm"/>
